@@ -140,7 +140,8 @@ exports.addTransaction = async (req, res, next) => {
 // @access  Public
 exports.deleteTransaction = async (req, res, next) => {
   try {
-    const transaction = await Transaction.findById(req.params.id);
+    let ID = req.params.id
+    const transaction = await Transaction.findById(ID);
 
     if (!transaction) {
       return res.status(404).json({
@@ -157,13 +158,10 @@ exports.deleteTransaction = async (req, res, next) => {
     });
 
   } catch (err) {
-
     return res.status(500).json({
       success: false,
       error: 'Server Error'
     });
-
   }
-
 
 }
